@@ -1,0 +1,5 @@
+[program:gunicorn_process]
+command=gunicorn watchcode.wsgi:application --bind 127.0.0.1:9000
+directory=/home/django/django_project/watchcode
+user=root
+

@@ -1,5 +1,5 @@
 /**
- *  WatchCode
+ *  WatchDoge
  *
  *  Copyright 2015 Paul Moulton and Emilee Chen
  *
@@ -14,10 +14,10 @@
  *
  */
 definition(
-    name: "WatchCode",
+    name: "WatchDoge",
     namespace: "pmoulton",
     author: "Paul Moulton and Emilee Chen",
-    description: "Makes you watch less TV and code more :).",
+    description: "Does cool things",
     category: "Mode Magic",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
     iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
@@ -28,33 +28,54 @@ preferences {
         input "switch1", "capability.switch"
     }
     section("TV Power") {
-    	input "switch2", "capability.switch"
+        input "switch2", "capability.switch"
     }
     section("Desk Motion") {
-    	input "motion1", ""
-    }
+        input "motion1", "capability.motionSensor"
+    }f
     section("Desk Siren") {
-    	input "siren1", ""
+        input "siren1", "capability.alarm"
     }
 }
 
 def installed() {
-	log.debug "Installed with settings: ${settings}"
-	initialize()
+    log.debug "Installed with settings: ${settings}"
+    initialize()
 }
 
 def initialize() {
-	switch1.on()
+    
+    // Prepare the package to be sent
+    def params = [
+        uri: "http://watchdoge.me/api/v1/check_activity",
+        username: "pmoulton"
+    ]
+
+    log.debug postBody
+
+    switch1.on()
+    httpPost(params){
+            if (response.status == 200) {
+                log.error "Received ok reponse. Do not start disruptive process."
+                switch1.off()
+                switch1.on()
+            }
+            else {
+                log.debug "Wake the user."
+                switch1.off()
+            }
+    }
+    //switch1.on()
     def fiveMinuteDelay = 5
     runIn(fiveMinuteDelay, turnOffSwitch)
 }
 
 def updated(settings) {
-	log.debug "Updated with settings: ${settings}"
-	unsubscribe()
+    log.debug "Updated with settings: ${settings}"
+    unsubscribe()
     initialize()
 }
 
 def turnOffSwitch() {
-	switch1.off()
+    switch1.off()
 }
