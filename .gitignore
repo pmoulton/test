@@ -1,6 +1,7 @@
 led / optimized / DLL files
 __pycache__/
 *.py[cod]
+watchcode/db*
 
 # C extensions
 *.so

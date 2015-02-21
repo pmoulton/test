@@ -6,7 +6,6 @@ def get_event_time(username="pmoulton", depth=0):
     url = "https://api.github.com/users/" + username + "/events/public"
     r = requests.get(url)
     if r.status_code >= 400:
-        print("stuff")
         return None
     activity = r.json()
     t = activity[depth]['created_at']
