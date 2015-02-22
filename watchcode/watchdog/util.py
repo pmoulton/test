@@ -18,10 +18,11 @@ def greater_than(test, delta=300):
     current = datetime.datetime.utcnow()
     return  test + delta >= current
 
-
 def delta(test, delta=300):
     current = datetime.datetime.utcnow()
     t = test + datetime.timedelta(seconds=delta)
     t = t - current
     return t.total_seconds()
 
+# if __name__=="__main__":
+#     print delta(get_event_time("paulmoulton", 0))

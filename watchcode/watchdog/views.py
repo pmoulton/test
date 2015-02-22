@@ -24,7 +24,25 @@ def check_activity(request):
 def index(request):
     template = loader.get_template('index.html')
     t0 = util.delta(util.get_event_time("paulmoulton", 0), 300)
+    if t0 < 0:
+        t1 = 0
+    else:
+        t1 = t0/3
+
+    if t1 > 0:
+        labeltype = 'success'
+        labeltext = "Everything is good!!"
+        alerttext = "Keep Netflixin'. Watch your progress for when you should work again :)"
+    else:
+        labeltype = 'danger'
+        labeltext = "Get Back to Work"
+        alerttext = 'Push some code to Github before you watch more Parks & Rec.'
     context = RequestContext(request, {
-        'seconds': t0
+        'percent': int(t1),
+        'time': int(t0),
+        'labeltext': labeltext,
+        'labeltype': labeltype, 
+        'alerttext': alerttext,
+        'username': "paulmoulton"
     })
     return HttpResponse(template.render(context))
