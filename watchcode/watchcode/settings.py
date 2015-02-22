@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path import normpath, join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '&ti@pqk!*u+f=y-=)q#!t0dp*wk!=yzv&mh755z&bhy)$k@8$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -36,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'watchdog'
+    'watchdog',
+    'bootstrap3'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,3 +83,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+STATIC_ROOT = 'static/'
+STATICFILES_DIRS = ( os.path.join('static/watchcode'), )
