@@ -17,7 +17,8 @@ WatchDoge uses SmartThings sensors and a [Django] backend to scrape your github 
 ```sh
 $ git clone [git-repo-url]
 $ cd watchdoge/watchcode
-$ python manage.py runserver
+$ python manage.py runserver OR
+$ gunicorn watchcode.wsgi:application --bind 127.0.0.1:9000 &
 ```
 
 ### Todo's

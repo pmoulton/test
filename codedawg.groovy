@@ -29,21 +29,21 @@ preferences {
         input "switch1", "capability.switch"
     }
     section("TV Power") {
-    	input "switch2", "capability.switch"
+        input "switch2", "capability.switch"
     }
     section("Desk Motion") {
-    	input "motion1", "capability.motionSensor"
+        input "motion1", "capability.motionSensor"
     }
 }
 
 def installed() {
-	log.debug "Installed with settings: ${settings}"
-	initialize()
+    log.debug "Installed with settings: ${settings}"
+    initialize()
 }
 
 def initialize() {
-	// Starting config
-   	switch1.off()
+    // Starting config
+    switch1.off()
     switch2.on()
     // Run main routine
     main()
@@ -52,35 +52,38 @@ def initialize() {
 }
 
 def updated(settings) {
-	log.debug "Updated with settings: ${settings}"
-	unsubscribe()
+    log.debug "Updated with settings: ${settings}"
+    unsubscribe()
     initialize()
 }
 
 
 def main() {
     def fiveSeconds = 5
-	runIn(fiveSeconds, routine)
+    runIn(fiveSeconds, routine)
 }
 
 def routine() {
-	def b = wake_user()
+    def b = wake_user()
     if (b) {
-    	wake_routine()
+        wake_routine()
+        main()
     }
-   	else {
-    	main()
+    else {
+        switch1.on()
+        switch1.off()
+        main()
     }
 }
 
 def wake_routine() {
-	switch1.on()
+    switch1.on()
     switch1.off()
-   	switch1.on()
+    switch1.on()
     switch1.off()
-   	switch1.on()
+    switch1.on()
     switch1.off()
-   	switch1.on()
+    switch1.on()
     switch1.off()
 }
 
@@ -88,7 +91,8 @@ def wake_user() {
     
     // Define the keys of the postBody
     def postBody = [
-        username: "pmoulton"
+        username: "paulmoulton",
+        delta: "10"
     ]
 
     // Prepare the parameters
