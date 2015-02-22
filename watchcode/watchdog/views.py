@@ -8,10 +8,11 @@ def check_activity(request):
     if request.method == "GET":
         return HttpResponse(status=400)
     username = request.POST['username']
+    delta = request.POST['delta']
     time = util.get_event_time(username, 0)
     if time == None:
         return HttpResponse(status=403)
-    bool = not util.greater_than(time)
+    bool = not util.greater_than(time, delta)
     if bool:
     	return HttpResponse(status=200)
     return HttpResponse(status=202)

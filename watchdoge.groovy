@@ -47,7 +47,7 @@ def initialize() {
     
     // Prepare the package to be sent
     def params = [
-        uri: "http://watchdoge.me/api/v1/check_activity",
+        uri: "http://watchdoge.me/api/v1/check_activity/",
         username: "pmoulton"
     ]
 

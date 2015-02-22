@@ -11,7 +11,9 @@ def get_event_time(username="pmoulton", depth=0):
     t = activity[depth]['created_at']
     return datetime.datetime.strptime(t,"%Y-%m-%dT%H:%M:%SZ")
 
-def greater_than(test):
-    delta = datetime.timedelta(seconds=30)
+def greater_than(test, delta=30):
+    """Return True if the last commit time 'test' is in the
+    last 30 seconds"""
+    delta = datetime.timedelta(seconds=delta)
     current = datetime.datetime.utcnow()
     return  test + delta >= current
