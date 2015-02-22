@@ -10,4 +10,18 @@ $('#btnToggle').click(function(){
     $(this).addClass('on');
   }
 });
+
+
+
+$(document).ready(function () {
+    
+    ViewModel = function(){
+        var self = this;
+        
+        self.showing = ko.observable('');
+        self.show = function(what) {
+            return (function(){ self.showing(what); });
+        }
+    };
+    ko.applyBindings(new ViewModel);
 });
