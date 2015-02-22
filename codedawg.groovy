@@ -47,8 +47,6 @@ def initialize() {
     switch2.on()
     // Run main routine
     main()
-
-
 }
 
 def updated(settings) {

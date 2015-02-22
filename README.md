@@ -21,6 +21,9 @@ $ python manage.py runserver OR
 $ gunicorn watchcode.wsgi:application --bind 127.0.0.1:9000 &
 ```
 
+### API 
+http://watchdoge.me/api/v1/check_activity/
+
 ### Todo's
 
  - Add coffee machine mode
