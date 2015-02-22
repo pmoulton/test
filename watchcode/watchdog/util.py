@@ -3,7 +3,7 @@ import datetime
 
 def get_event_time(username, depth):
     """Get latest Github activity for a given username and depth"""
-    url = "https://api.github.com/users/" + username + "/events/public"
+    url = "https://api.github.com/users/" + username + "/events/public?access_token=e33ee87d7a806d3d8ea8d6547b539d1465f1038e"
     r = requests.get(url)
     if r.status_code >= 400:
         return None
