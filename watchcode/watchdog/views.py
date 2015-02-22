@@ -9,6 +9,7 @@ def check_activity(request):
         return HttpResponse(status=400)
     username = request.POST['username']
     delta = request.POST['delta']
+    delta = int(delta)
     time = util.get_event_time(username, 0)
     if time == None:
         return HttpResponse(status=403)

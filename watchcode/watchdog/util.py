@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-def get_event_time(username="pmoulton", depth=0):
+def get_event_time(username, depth):
     """Get latest Github activity for a given username and depth"""
     url = "https://api.github.com/users/" + username + "/events/public"
     r = requests.get(url)
