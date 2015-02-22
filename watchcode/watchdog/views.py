@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
 import json
 import util
@@ -15,7 +16,15 @@ def check_activity(request):
         return HttpResponse(status=403)
     bool = not util.greater_than(time, delta)
     if bool:
-    	return HttpResponse(status=200)
+        return HttpResponse(status=200)
     return HttpResponse(status=202)
     # response_data = {'error': "none", 'start': bool}
     # return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+def index(request):
+    template = loader.get_template('index.html')
+    t0 = util.delta(util.get_event_time("paulmoulton", 0), 300)
+    context = RequestContext(request, {
+        'seconds': t0
+    })
+    return HttpResponse(template.render(context))
