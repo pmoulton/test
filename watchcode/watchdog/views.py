@@ -26,6 +26,7 @@ def index(request):
     t0 = util.delta(util.get_event_time("paulmoulton", 0), 300)
     if t0 < 0:
         t1 = 0
+        t0 = 0
     else:
         t1 = t0/3
 

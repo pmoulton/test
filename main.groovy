@@ -76,12 +76,13 @@ def main() {
     if (b) {
         switch1.on()
         alarm1.strobe()
-        def thirtySeconds = 3000000
+        def thirtySeconds = 30
         runIn(thirtySeconds, main)
     }
     else {
         switch1.off()
-        def fiveSeconds = 50000
+        alarm1.off()
+        def fiveSeconds = 5
         runIn(fiveSeconds, main)
     }
 }
@@ -91,7 +92,7 @@ def wake_user() {
     // Define the keys of the postBody
     def postBody = [
         username: "paulmoulton",
-        delta: "10"
+        delta: "300"
     ]
 
     // Prepare the parameters
