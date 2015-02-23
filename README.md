@@ -17,6 +17,7 @@ CodeWatchDoge uses SmartThings sensors and a [Django] backend to make [Github] A
 ### Installation
 
 ```sh
+$ pip install Django=1.7.4
 $ git clone https://github.com/pmoulton/watchdoge
 $ cd watchdoge/watchcode
 $ python manage.py runserver OR
